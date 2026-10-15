@@ -15,4 +15,20 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// Auto-logout on 401 (expired / invalid token)
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('travel_token');
+      localStorage.removeItem('travel_user');
+      // Only redirect if not already on an auth page
+      if (!window.location.pathname.startsWith('/login') && !window.location.pathname.startsWith('/register')) {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default api;
