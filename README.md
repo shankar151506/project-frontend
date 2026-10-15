@@ -1,29 +1,64 @@
-# Travel Companion Frontend
+# ✈️ Travel Companion Frontend
 
-React 18 and Vite frontend for the Travel Companion platform.
+React 18 and Vite single-page application (SPA) for the **Travel Companion Matching Platform**.
 
-## Requirements
+[![Deployment Status](https://img.shields.io/badge/Vercel-Deployed-success?logo=vercel)](https://frontend-peach-eight-99.vercel.app)
+[![API Backend](https://img.shields.io/badge/Render-Connected-blue?logo=render)](https://travel-companion-backend-xdgq.onrender.com)
 
-- Node.js 18 or newer
-- The Travel Companion backend running at `http://localhost:8080` (for API features)
+- **Live Production URL:** [https://frontend-peach-eight-99.vercel.app](https://frontend-peach-eight-99.vercel.app)
+- **Backend API:** [https://travel-companion-backend-xdgq.onrender.com/api](https://travel-companion-backend-xdgq.onrender.com/api)
 
-## Run locally
+---
 
-```powershell
+## 🛠️ Tech Stack
+
+- **Framework:** React 18
+- **Build Tool:** Vite
+- **Routing:** React Router v6
+- **HTTP Client:** Axios (with automatic JWT bearer token interceptor and 401 auto-logout)
+- **Deployment:** Vercel
+
+---
+
+## 🚀 Getting Started Locally
+
+### Prerequisites
+- Node.js 18+ and npm
+
+### Installation & Run
+
+```bash
+# Install dependencies
 npm install
-Copy-Item .env.example .env
+
+# Copy example environment configuration
+cp .env.example .env
+
+# Start local development server
 npm run dev
 ```
 
-Open the URL printed by Vite (normally `http://localhost:5173`). The local API base URL is configured in `.env`; set `VITE_API_BASE_URL` to the backend origin, without `/api`, when using a different backend.
+Visit `http://localhost:5173` in your browser.
 
-## Build
+---
 
-```powershell
+## ⚙️ Environment Variables
+
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `VITE_API_BASE_URL` | Base URL of the backend API (without `/api` suffix) | `https://travel-companion-backend-xdgq.onrender.com` |
+
+---
+
+## 📦 Build & Deploy
+
+```bash
+# Build for production
 npm run build
+
+# Preview production build locally
 npm run preview
 ```
 
-## API integration
-
-The frontend sends REST requests to `${VITE_API_BASE_URL}/api` and attaches the stored JWT to authenticated requests. Do not put secrets in `VITE_*` variables; Vite embeds them in browser code.
+### Vercel Deployment
+This repository is configured with `vercel.json` for client-side SPA routing (`react-router-dom`) so that refreshing any route (`/login`, `/dashboard`, etc.) works seamlessly.
